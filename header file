@@ -1,0 +1,53 @@
+#ifndef _ENCRYPTIONTYPE_
+#define _ENCRYPTIONTYPE_ 
+#include<iostream>
+#include<string>
+#include <fstream>
+#include <list>
+using namespace std;
+class EncryptionType
+{
+protected:
+	list<string> linkedList;
+	//STORES THE USERNAME AND PASSWORD TOGETHER
+	string UN;
+	//USER NAME STORED IN DATABASE
+	string PW;
+	//USER PASSWORD STORED IN DATABASE
+	string Pin;
+	//USERS PASSWORD
+	string theMessage;
+	//THE SECRET MESSAGE
+	fstream fileAccess;
+	unsigned char BITKEY;
+	//THE KEY TO THE MESSAGE
+	unsigned char BITKEY2;
+	
+	int AccountType(void);
+	//FIND OUT IF THE USER HAS AN ACCOUTNT OR NOT
+	string EncryptPw(string);
+	//ENCRYPTS USERS PASSWORD WITH A DIFFERENT KEY
+
+public:
+	EncryptionType();//CONSTRUCTOR
+	void createNewAccount();
+	//IF THERE IS A NEW USER
+	//CREATES AN ACCOUNT FOR THAT USER
+	string cipherMe(string);
+	//TAKE THE USERS MESSAGE
+	//RETURNS THE ENCRYPTED MESSAGE
+	string decipherMe(string);
+	//TAKES THE CIPHERED MESSAGE
+	//RETURNS THE ORGINAL VERSION OF THE MESSAGE
+	bool authenicateUser(string,string);
+	//VALIDATES USERNAME AND PASSWORD
+	//RETURNS TRUE IF USER EXISTES
+	string destoryMessage(void);
+	//DESTORYS THE SECRET MESSAGE
+	//IF THE PASSWORD WAS ENTER INCORRECTLY 3 TIMES
+	bool storeMessage(string);
+	//STORE A MESSAGE IN THE MESSAGE DATABASE
+	//RETURNS TRUE IF MESSAGE IS SUCCESSFULLY STORED
+
+};
+#endif
